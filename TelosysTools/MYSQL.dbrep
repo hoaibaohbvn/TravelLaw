@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+    <tableList databaseId="0" databaseName="MYSQL" databaseProductName="MySQL" generation="2023-09-26 11:47:27">
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Account" name="account" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="username" dbNotNull="true" dbPosition="2" dbSize="16" dbTypeName="VARCHAR" inputType="text" javaName="username" javaType="java.lang.String" jdbcTypeCode="12" label="Username" maxLength="16" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="password" dbNotNull="true" dbPosition="3" dbSize="16" dbTypeName="VARCHAR" inputType="text" javaName="password" javaType="java.lang.String" jdbcTypeCode="12" label="Password" maxLength="16" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="phone" dbNotNull="false" dbPosition="4" dbSize="12" dbTypeName="VARCHAR" inputType="text" javaName="phone" javaType="java.lang.String" jdbcTypeCode="12" label="Phone" maxLength="12" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="email" dbNotNull="true" dbPosition="5" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="email" javaType="java.lang.String" jdbcTypeCode="12" label="Email" maxLength="100" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="firstname" dbNotNull="true" dbPosition="6" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="firstname" javaType="java.lang.String" jdbcTypeCode="12" label="Firstname" maxLength="100" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="lastname" dbNotNull="true" dbPosition="7" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="lastname" javaType="java.lang.String" jdbcTypeCode="12" label="Lastname" maxLength="100" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="address" dbNotNull="false" dbPosition="8" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="address" javaType="java.lang.String" jdbcTypeCode="12" label="Address" maxLength="200" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="avatar" dbNotNull="false" dbPosition="9" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="avatar" javaType="java.lang.String" jdbcTypeCode="12" label="Avatar" maxLength="100" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="status" dbNotNull="true" dbPosition="10" dbSize="1" dbTypeName="BIT" inputType="checkbox" javaName="status" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Status" notNull="true" selected="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_commentblog_account" id="LINK_FK_FK_commentblog_account_I" inverseSideOf="LINK_FK_FK_commentblog_account_O" javaName="listOfCommentblog" javaType="unused" joinTableName="" mappedBy="account" optional="" owningSide="false" sourceTableName="account" targetEntity="Commentblog" targetTableName="commentblog" used="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_authorized_account" id="LINK_FK_FK_authorized_account_I" inverseSideOf="LINK_FK_FK_authorized_account_O" javaName="listOfAuthorized" javaType="unused" joinTableName="" mappedBy="account" optional="" owningSide="false" sourceTableName="account" targetEntity="Authorized" targetTableName="authorized" used="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_favorite_account" id="LINK_FK_FK_favorite_account_I" inverseSideOf="LINK_FK_FK_favorite_account_O" javaName="listOfFavorite" javaType="unused" joinTableName="" mappedBy="account" optional="" owningSide="false" sourceTableName="account" targetEntity="Favorite" targetTableName="favorite" used="true"/>
+        </table>
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Authorized" name="authorized" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="account_id" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="accountId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Account id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="role_id" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="roleId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Role id" notNull="true" selected="true"/>
+            <fk name="FK_authorized_account">
+                <fkcol colname="account_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="authorized" tableref="account" updaterule="1"/>
+            </fk>
+            <fk name="FK_authorized_role">
+                <fkcol colname="role_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="authorized" tableref="role" updaterule="1"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_authorized_role" id="LINK_FK_FK_authorized_role_O" inverseSideOf="" javaName="role" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="authorized" targetEntity="Role" targetTableName="role" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="role_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_authorized_account" id="LINK_FK_FK_authorized_account_O" inverseSideOf="" javaName="account" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="authorized" targetEntity="Account" targetTableName="account" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="account_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Blog" name="blog" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="category_id" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="categoryId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Category id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="title" dbNotNull="true" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="title" javaType="java.lang.String" jdbcTypeCode="12" label="Title" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="image" dbNotNull="true" dbPosition="4" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="image" javaType="java.lang.String" jdbcTypeCode="12" label="Image" maxLength="100" notEmpty="true" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="descrription" dbNotNull="false" dbPosition="5" dbSize="65535" dbTypeName="TEXT" inputType="text" javaName="descrription" javaType="java.lang.String" jdbcTypeCode="-1" label="Descrription" longText="true" maxLength="65535" notNull="false" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="status" dbNotNull="true" dbPosition="6" dbSize="1" dbTypeName="BIT" inputType="checkbox" javaName="status" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Status" notNull="true" selected="true"/>
+            <column dateType="D" dbComment="" dbDefaultValue="" dbName="create_date" dbNotNull="true" dbPosition="7" dbSize="10" dbTypeName="DATE" inputType="date" javaName="createDate" javaType="java.util.Date" jdbcTypeCode="91" label="Create date" notNull="true" selected="true"/>
+            <fk name="FK_blog_category">
+                <fkcol colname="category_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="blog" tableref="category" updaterule="1"/>
+            </fk>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_favorite_blog" id="LINK_FK_FK_favorite_blog_I" inverseSideOf="LINK_FK_FK_favorite_blog_O" javaName="listOfFavorite" javaType="unused" joinTableName="" mappedBy="blog" optional="" owningSide="false" sourceTableName="blog" targetEntity="Favorite" targetTableName="favorite" used="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_commentblog_blog" id="LINK_FK_FK_commentblog_blog_I" inverseSideOf="LINK_FK_FK_commentblog_blog_O" javaName="listOfCommentblog" javaType="unused" joinTableName="" mappedBy="blog" optional="" owningSide="false" sourceTableName="blog" targetEntity="Commentblog" targetTableName="commentblog" used="true"/>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_blog_category" id="LINK_FK_FK_blog_category_O" inverseSideOf="" javaName="category" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="blog" targetEntity="Category" targetTableName="category" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="category_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Category" name="category" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_blog_category" id="LINK_FK_FK_blog_category_I" inverseSideOf="LINK_FK_FK_blog_category_O" javaName="listOfBlog" javaType="unused" joinTableName="" mappedBy="category" optional="" owningSide="false" sourceTableName="category" targetEntity="Blog" targetTableName="blog" used="true"/>
+        </table>
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Commentblog" name="commentblog" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="blog_id" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="blogId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Blog id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="account_id" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="accountId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Account id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="status" dbNotNull="true" dbPosition="4" dbSize="1" dbTypeName="BIT" inputType="checkbox" javaName="status" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Status" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="title" dbNotNull="true" dbPosition="5" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="title" javaType="java.lang.String" jdbcTypeCode="12" label="Title" maxLength="100" notEmpty="true" notNull="true" selected="true"/>
+            <column dateType="D" dbComment="" dbDefaultValue="" dbName="create_date" dbNotNull="true" dbPosition="6" dbSize="10" dbTypeName="DATE" inputType="date" javaName="createDate" javaType="java.util.Date" jdbcTypeCode="91" label="Create date" notNull="true" selected="true"/>
+            <fk name="FK_commentblog_account">
+                <fkcol colname="account_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="commentblog" tableref="account" updaterule="1"/>
+            </fk>
+            <fk name="FK_commentblog_blog">
+                <fkcol colname="blog_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="commentblog" tableref="blog" updaterule="1"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_commentblog_blog" id="LINK_FK_FK_commentblog_blog_O" inverseSideOf="" javaName="blog" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="commentblog" targetEntity="Blog" targetTableName="blog" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="blog_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_commentblog_account" id="LINK_FK_FK_commentblog_account_O" inverseSideOf="" javaName="account" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="commentblog" targetEntity="Account" targetTableName="account" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="account_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Favorite" name="favorite" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="blog_id" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="blogId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Blog id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="account_id" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="accountId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Account id" notNull="true" selected="true"/>
+            <fk name="FK_favorite_account">
+                <fkcol colname="account_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="favorite" tableref="account" updaterule="1"/>
+            </fk>
+            <fk name="FK_favorite_blog">
+                <fkcol colname="blog_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="favorite" tableref="blog" updaterule="1"/>
+            </fk>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_favorite_account" id="LINK_FK_FK_favorite_account_O" inverseSideOf="" javaName="account" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="favorite" targetEntity="Account" targetTableName="account" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="account_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+            <link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_favorite_blog" id="LINK_FK_FK_favorite_blog_O" inverseSideOf="" javaName="blog" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="favorite" targetEntity="Blog" targetTableName="blog" used="true">
+                <joinColumns>
+                    <joinColumn insertable="false" name="blog_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+                </joinColumns>
+            </link>
+        </table>
+        <table catalog="travellaw" databaseComment="" databaseType="TABLE" javaBean="Role" name="role" schema="">
+            <column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+            <column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="true" dbPosition="2" dbSize="20" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="20" notEmpty="true" notNull="true" selected="true"/>
+            <link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_authorized_role" id="LINK_FK_FK_authorized_role_I" inverseSideOf="LINK_FK_FK_authorized_role_O" javaName="listOfAuthorized" javaType="unused" joinTableName="" mappedBy="role" optional="" owningSide="false" sourceTableName="role" targetEntity="Authorized" targetTableName="authorized" used="true"/>
+        </table>
+    </tableList>
+</root>
